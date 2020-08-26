@@ -5,21 +5,21 @@ It is a program that accepts a sentence from a user and checks that whether each
 1)Trie Data structure
 2)Levenshtein Distance (Populary known as a famous dynamic Programming question- Edit Distance)
 
-#Libraries used:
+# Libraries used:
 1)pickle(for storing the trained Trie data structure)
 2)bz2 (for compression of Trie Data structure)
 3)time
 
-#Development tools:
+# Development tools:
 1)Spyder 4 Ide
 2)Python 3.7 (CPython implementation)
 
-#Brief Idea
+# Brief Idea
 Trie is used to store apprrox 370k words from word database. This trie is used to search for the word entered by the user.
 In case a word is not found in database. It will look for closest words that can match the input word.
 The closeness between two words is determined by their Levenshtein Distance.
 
-#How to start:
+# How to start:
 1)Download the code.
 2)Open the Spelly folder.
 3)Double click Spelly.exe
