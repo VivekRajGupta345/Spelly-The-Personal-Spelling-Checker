@@ -17,18 +17,18 @@ class trieNode:
     
     def __init__(self):
         
-        self.children=[None for i in range(0,26)]
+        self._children=[None for i in range(0,26)]
         
-        self.isend=False
+        self._isend=False
         
-        self.count=0
+        self._count=0
 
 
 class Trie:
     
     def __init__(self):
         
-        self.head=trieNode()
+        self.__head=trieNode()
         
     def __key(self,letter):
         
@@ -36,7 +36,7 @@ class Trie:
     
     def add(self,string):
         
-        curr=self.head
+        curr=self.__head
         
         m=len(string)
         
@@ -44,20 +44,20 @@ class Trie:
             
             key=self.__key(string[i])
             
-            if curr.children[key]!=None:
-                curr=curr.children[key]
+            if curr._children[key]!=None:
+                curr=curr._children[key]
             else:
                 
                 temp=trieNode()                
-                curr.children[key]=temp
+                curr._children[key]=temp
                 curr=temp
         
-        curr.isend=True
-        curr.count+=1
+        curr._isend=True
+        curr._count+=1
     
     def __searchMain(self,curr_node,index,m,key_string,optimal,optimal_dist,optimal_count,curr_string):
         
-        if curr_node.isend==True:
+        if curr_node._isend==True:
                 
             candidate_string=curr_string
             edit_dist=LevenshteinDistance(candidate_string,key_string)
@@ -66,13 +66,14 @@ class Trie:
                 
                 optimal_dist[0]=edit_dist
                 optimal[0]=candidate_string
-                optimal_count[0]=curr_node.count
+                optimal_count[0]=curr_node._count
                 
             elif optimal_dist[0]==edit_dist:
-                if curr_node.count>=optimal_count[0]:
+                
+                if curr_node._count>=optimal_count[0]:
                     optimal_dist[0]=edit_dist
                     optimal[0]=candidate_string
-                    optimal_count[0]=curr_node.count
+                    optimal_count[0]=curr_node._count
             else:
                 return
         
@@ -81,13 +82,13 @@ class Trie:
             key=self.__key(key_string[index])
                         
                                     
-            if curr_node.children[key]!=None:
-                self.__searchMain(curr_node.children[key],index+1,m,key_string,optimal,optimal_dist,optimal_count,curr_string+key_string[index])
+            if curr_node._children[key]!=None:
+                self.__searchMain(curr_node._children[key],index+1,m,key_string,optimal,optimal_dist,optimal_count,curr_string+key_string[index])
                 
             else:
                 
                 count=-1
-                for node in curr_node.children:
+                for node in curr_node._children:
                     count+=1
                     if node!=None:
                         new_letter=chr(count+ord("a"))
@@ -97,7 +98,7 @@ class Trie:
         else:
             
             count=-1
-            for node in curr_node.children:
+            for node in curr_node._children:
                 count+=1
                 if node!=None:
                     new_letter=chr(count+ord("a"))
@@ -112,6 +113,6 @@ class Trie:
         optimal_dist=[float("inf")]
         optimal_count=[float("-inf")]
         
-        self.__searchMain(self.head,0,m,key_string,optimal,optimal_dist,optimal_count,curr_string)
+        self.__searchMain(self.__head,0,m,key_string,optimal,optimal_dist,optimal_count,curr_string)
         
         return optimal[0]
