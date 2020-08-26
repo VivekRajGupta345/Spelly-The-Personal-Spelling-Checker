@@ -16,8 +16,8 @@ It is a program that accepts a sentence from a user and checks that whether each
 2)Python 3.7 (CPython implementation)  
 
 # Brief Idea
-Trie is used to store apprrox 370k words from word database. This trie is used to search for the word entered by the user.  
-In case a word is not found in database. It will look for closest words that can match the input word.  
+Trie is used to store apprrox 370k words from a word database. This trie is used to search for the word entered by the user using prefix.  
+In case a word is not found in database. It will look for the closest words that can match the input word.  
 The closeness between two words is determined by their Levenshtein Distance.  
 
 # How to start:
