@@ -29,7 +29,7 @@ class Trie:
     
     def add(self,string):
         
-        curr=head
+        curr=self.head
         
         m=len(string)
         
@@ -48,32 +48,63 @@ class Trie:
         curr.isend=True
         curr.count+=1
     
-    def __searchMain(self,curr_node,index,m,key_string,flag,optimal,optimal_dist,optimal_count,curr_string):
-        if index==m:
-            if curr_node.isend==True:
-                flag[0]=True
-                optimal_dist=0
-                optimal_count=curr_node.count
-                optimal=curr_string
-                return
-            else:
-                pass
+    def __searchMain(self,curr_node,index,m,key_string,optimal,optimal_dist,optimal_count,curr_string):
         
-        elif flag[0]==True:
-            return
+        if curr_node.isend==True:
+                
+            candidate_string=curr_string
+            edit_dist=LevenshteinDistance(candidate_string,key_string)
+            
+            if optimal_dist[0]>edit_dist:
+                
+                optimal_dist[0]=edit_dist
+                optimal[0]=candidate_string
+                optimal_count[0]=curr_node.count
+                
+            elif optimal_dist[0]==edit_dist:
+                if curr_node.count>=optimal_count[0]:
+                    optimal_dist[0]=edit_dist
+                    optimal[0]=candidate_string
+                    optimal_count[0]=curr_node.count
+            else:
+                return
+        
+        if index<m:
+    
+            key=self.__key(key_string[index])
+                        
+                                    
+            if curr_node.children[key]!=None:
+                self.__searchMain(curr_node.children[key],index+1,m,key_string,optimal,optimal_dist,optimal_count,curr_string+key_string[index])
+                
+            else:
+                
+                count=-1
+                for node in curr_node.children:
+                    count+=1
+                    if node!=None:
+                        new_letter=chr(count+ord("a"))
+                        self.__searchMain(node,index+1,m,key_string,optimal,optimal_dist,optimal_count,curr_string+new_letter)
+                        
+            
         else:
             
-            key=self.__key(key_string[index])
-            
-            if curr_node.isend==True:
-                optimal=curr_string+key_string[index]
-                optimal_count=curr_node.count
-                
-                
-            if curr_node.children[key]!=None:
-                self.__searchMain(curr_node.children[key],index+1,m,key_string,flag,optimal,optimal_dist,optimal_count,curr_string+key_string[index])
-                
-            else:
-                
-            
-            
+            count=-1
+            for node in curr_node.children:
+                count+=1
+                if node!=None:
+                    new_letter=chr(count+ord("a"))
+                    self.__searchMain(node,index+1,m,key_string,optimal,optimal_dist,optimal_count,curr_string+new_letter)
+
+    
+    def search(self,key_string):
+        
+        curr_string=""
+        m=len(key_string)
+        optimal=[""]
+        optimal_dist=[float("inf")]
+        optimal_count=[float("-inf")]
+        
+        self.__searchMain(self.head,0,m,key_string,optimal,optimal_dist,optimal_count,curr_string)
+        
+        return optimal[0]
