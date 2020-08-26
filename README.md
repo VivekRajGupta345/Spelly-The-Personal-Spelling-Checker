@@ -4,6 +4,7 @@ It is a program that accepts a sentence from a user and checks that whether each
 # Concepts Used:
 1)Trie Data structure  
 2)Levenshtein Distance (Populary known as a famous dynamic Programming question- Edit Distance)  
+3)Backtracking  
 
 # Libraries used:
 1)pickle(for storing the trained Trie data structure)  
