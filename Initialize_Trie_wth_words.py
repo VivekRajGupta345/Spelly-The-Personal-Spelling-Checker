@@ -10,6 +10,7 @@ It will save the data structure so that search could be faster during run time a
 
 import time
 from trie import Trie
+import pickle
 
 start_time = time.time()
 word_database=open("Word_List.txt","r")
@@ -30,8 +31,21 @@ end_time=time.time()
 
 print("Time Taken to execute:"+str(end_time-start_time)+" seconds")
 
+
 """
 Total words in word database = 370K approx.
 Time taken to add all the words to trie database is approximately 35 seconds.
+but after the compiled python file was generated,it reduced to approx 7 seconds.
+To tackle it. prefix_tree is going to be saved in trained state, so that application is faster during runtime.
+
+"""
+
+
+f = open("Trie.pkl", "wb")
+pickle.dump(prefix_tree, f)
+f.close()
+
+"""
+The generated trained Trie using pickle was observed to be of size 60 Mb approx
 
 """
