@@ -21,6 +21,9 @@ class main:
     def start(self):
         print()
         print()
+        print("########################Spelly The Spelling Corrector################################")
+        print("Created by - Vivek Raj Gupta")
+        print()
         request=1
         while(request):
             print("#################################################################################")
