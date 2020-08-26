@@ -3,7 +3,14 @@
 Created on Tue Aug 25 21:44:18 2020
 
 @author: Vivek Raj Gupta
+
+Trie is an efficient information reTrieval data structure. Using Trie. 
+search complexities can be brought to optimal limit (key length).
+Insert and search costs O(key_length)
+however the memory requirements of Trie is O(ALPHABET_SIZE * key_length * N) where N is number of keys in Trie. 
+There are efficient representation of trie nodes (e.g. compressed trie, ternary search tree, etc.) to minimize memory requirements of trie.
 """
+
 from string_metric import LevenshteinDistance
 
 class trieNode:
