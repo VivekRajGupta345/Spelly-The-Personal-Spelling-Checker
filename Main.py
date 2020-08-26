@@ -30,30 +30,49 @@ class main:
             print("Please enter your sentence.")
             
             m=0
+            
             while(m==0):
-            	sentence=input().strip(" ").split(" ")
-            	m=len(sentence)
-            	for i in range(0,m):
+                sentence=input().strip(" ").split(" ")
+                m=len(sentence)
+                full_stop=False
+                for i in range(0,m):
+                    break_flag=False
+                    n=len(sentence[i])
+                    for j in range(0,n):
 
-            		n=len(sentence[i])
-            		for j in range(0,n):
-
-            			if i!=m-1:
-            				if sentence[i][j].isalpha():
-            					pass
-            				else:
-            					print("Please only use alphabets.")
-            					m=0
-            			else:
-            				if sentence[i]==".":
-            					pass
-            				else:
-            					if sentence[i][j].isalpha():
-            						pass
-	            				else:
-	            					print("Please only use alphabets.")
-	            					m=0
-	            					   	
+                        if i!=m-1:
+                            if sentence[i][j].isalpha():
+                                pass
+                            else:
+                                print("Please only use alphabets.")
+                                break_flag=True
+                                break
+                        else:
+                            if sentence[i][-1]==".":
+                                if len(sentence[i])==1:
+                                    print("Please enter a valid sentence.")
+                                    break_flag=True
+                                    break
+                                else:
+                                    full_stop=True
+                            else:
+                                if sentence[i][j].isalpha():
+                                    pass
+                                else:
+                                    print("Please only use alphabets.")
+                                    break_flag=True
+                                    break
+                
+                    if break_flag==True:
+                        m=0
+                        break
+                if m==1 and sentence[0]=="":
+                    print("Please enter a valid sentence.")
+                    m=0
+                    
+            if full_stop==True:
+                sentence[-1]=sentence[-1][:-1]
+                
             suggested_sentence=[]
             
             for word in sentence:
@@ -103,23 +122,28 @@ class main:
                              
                     if inp==1:
                         output_sentence.append(suggested_sentence[i])
-                        self.__Trie.add(suggested_sentence[i])
+                        self.__Trie.add(suggested_sentence[i].lower())
                     else:
                         output_sentence.append(sentence[i])
-                        self.__Trie.add(sentence[i])
+                        self.__Trie.add(sentence[i].lower())
                 
                 else:
                     output_sentence.append(sentence[i])
-                    self.__Trie.add(sentence[i])
+                    self.__Trie.add(sentence[i].lower())
                     
                     
                     
                     
             final_sentence=""
             
-            for word in output_sentence:
+            for word in output_sentence[:-1]:
                 final_sentence+=word+" "
+                
+            final_sentence+=output_sentence[-1]
             
+            if full_stop==True:
+                final_sentence+="."
+                
             print("Revised Sentence :")
             print(final_sentence)
             
