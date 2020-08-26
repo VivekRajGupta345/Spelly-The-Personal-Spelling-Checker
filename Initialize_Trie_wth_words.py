@@ -41,11 +41,29 @@ To tackle it. prefix_tree is going to be saved in trained state, so that applica
 """
 
 
-f = open("Trie.pkl", "wb")
-pickle.dump(prefix_tree, f)
-f.close()
+#f = open("Trie.pkl", "wb")
+#pickle.dump(prefix_tree, f)
+#f.close()
+
+
 
 """
 The generated trained Trie using pickle was observed to be of size 60 Mb approx
 
 """
+
+
+
+"""
+To further reduce the size of pickle object bz2 compression is being used
+"""
+
+import bz2
+
+
+sfile=bz2.BZ2File("Compressed_Trie.pkl","wb")
+
+pickle.dump(prefix_tree,sfile)
+
+sfile.close()
+
