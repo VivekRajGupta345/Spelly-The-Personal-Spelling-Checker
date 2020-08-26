@@ -29,9 +29,31 @@ class main:
             print("#################################################################################")
             print("Please enter your sentence.")
             
-            sentence=input().strip(" ").split(" ")
-            m=len(sentence)
-            
+            m=0
+            while(m==0):
+            	sentence=input().strip(" ").split(" ")
+            	m=len(sentence)
+            	for i in range(0,m):
+
+            		n=len(sentence[i])
+            		for j in range(0,n):
+
+            			if i!=m-1:
+            				if sentence[i][j].isalpha():
+            					pass
+            				else:
+            					print("Please only use alphabets.")
+            					m=0
+            			else:
+            				if sentence[i]==".":
+            					pass
+            				else:
+            					if sentence[i][j].isalpha():
+            						pass
+	            				else:
+	            					print("Please only use alphabets.")
+	            					m=0
+	            					   	
             suggested_sentence=[]
             
             for word in sentence:
