@@ -21,7 +21,7 @@ class main:
     def start(self):
         print()
         print()
-        print("########################Spelly The Spelling Corrector################################")
+        print("#######################Spelly The Personal Spelling Corrector###########################")
         print("Created by - Vivek Raj Gupta")
         print()
         request=1
@@ -101,6 +101,9 @@ class main:
             print("Revised Sentence :")
             print(final_sentence)
             
+            print("#################################################################################")
+            print()
+            
             print("Enter 1 to write a sentence or press 0 to exit the application.")
             
             flag=0
@@ -120,14 +123,17 @@ class main:
                             break
                         else:
                             request=0
+                            sfile=bz2.BZ2File("Compressed_Trie.pkl","wb")
+                            pickle.dump(self.__Trie,sfile,-1)
+                            sfile.close()
                             break
                 except:
                     print("Please enter a valid input.")
                     print("Enter 1 to write a sentence or press 0 to exit the application.")
         
-        print("#################################################################################")
-
-
+            
+        
+        
 main=main()
 
 main.start()
