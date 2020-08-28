@@ -13,7 +13,7 @@ class main:
     
     def __init__(self):
         
-        f=bz2.BZ2File("Compressed_Trie.pkl","rb")
+        f=bz2.BZ2File("Compressed_Trie2.pkl","rb")
         self.__Trie=pickle.load(f)
         f.close()
         del f

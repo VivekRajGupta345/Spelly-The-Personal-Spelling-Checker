@@ -10,7 +10,7 @@ import bz2
 
 import time
 start=time.time()
-f=bz2.BZ2File("Compressed_Trie.pkl","rb")
+f=bz2.BZ2File("Compressed_Trie2.pkl","rb")
 end=time.time()
 
 print(end-start)

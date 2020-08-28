@@ -13,7 +13,7 @@ from trie import Trie
 import pickle
 
 start_time = time.time()
-word_database=open("Word_List.txt","r")
+word_database=open("Word_List2.txt","r")
 words=word_database.readlines()
 
 #print(word_database.readline())
@@ -61,7 +61,7 @@ To further reduce the size of pickle object bz2 compression is being used
 import bz2
 
 
-sfile=bz2.BZ2File("Compressed_Trie.pkl","wb")
+sfile=bz2.BZ2File("Compressed_Trie2.pkl","wb")
 
 pickle.dump(prefix_tree,sfile)
 
