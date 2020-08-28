@@ -10,6 +10,7 @@ It is a program that accepts a sentence from a user and checks that whether each
 1)pickle(for storing the trained Trie data structure)  
 2)bz2 (for compression of Trie Data structure)  
 3)time  
+4) auto-py-to-exe (For converting python program to a desktop app that uses console)  
 
 # Development tools:
 1)Spyder4 Ide  
