@@ -169,7 +169,7 @@ class main:
                             break
                         else:
                             request=0
-                            sfile=bz2.BZ2File("Compressed_Trie.pkl","wb")
+                            sfile=bz2.BZ2File("Compressed_Trie2.pkl","wb")
                             pickle.dump(self.__Trie,sfile,-1)
                             sfile.close()
                             break
